@@ -1,0 +1,13 @@
+diff --git a/node_modules/@types/react/index.d.ts b/node_modules/@types/react/index.d.ts
+index 38400a5..01729bb 100644
+--- a/node_modules/@types/react/index.d.ts
++++ b/node_modules/@types/react/index.d.ts
+@@ -3930,7 +3930,7 @@ declare namespace React {
+ 
+     interface WebViewHTMLAttributes<T> extends HTMLAttributes<T> {
+         allowFullScreen?: boolean | undefined;
+-        allowpopups?: boolean | undefined;
++        allowpopups?: boolean | undefined | string;
+         autosize?: boolean | undefined;
+         blinkfeatures?: string | undefined;
+         disableblinkfeatures?: string | undefined;
