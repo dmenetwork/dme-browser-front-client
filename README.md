@@ -1,36 +1,114 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# dME Browser Front
 
-## Getting Started
+Desktop browser app for companies.
 
-First, run the development server:
+Built on Electron JS and Chromium
+
+## URLs
+
+> **QA Latest Version:** https://github.com/dmenetwork/dme-browser-front/releases/latest
+
+> **PROD Latest Version:** https://github.com/dmenetwork/dme-browser-front-client/releases/latest
+
+## Prerequisites
+
+Ensure you have the following installed before initializing the project:
+
+- **node** >=20.17.0 <21.0.0
+- **npm** >=10.0.0 <11.0.0
+- **Yarn** >= 1.22.22
+
+## Features & Dependencies
+
+- **Electron JS v32**
+- **Next JS v14**
+- **React JS v18**
+- **TypeScript**
+- **React Redux**
+- **Material UI v6** (Component UI)
+- **SQLite** (Local Database)
+- **Express** (Local Node Server)
+- **Axios** (Fetch data)
+- **Crypto JS** (Hash & Encrypt)
+- **Lucide React** (Icons)
+- **Moment Timezone** (Dates)
+- **Pusher JS** (Realtime Communication - Web Socket)
+- **uuid** (Unique ID)
+
+## Local Environment
+To setup your local environment you have the following the next steps:
+
+### .env.local
+Create in the root folder a **.env** file.
 
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+NEXT_PUBLIC_ENV=development
+NODE_ENV=development
+ELECTRON_MODE=build
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+**NEXT_PUBLIC_ENV** define the environment for Next JS app
+**NODE_ENV** define the environment for Electron JS app
+**ELECTRON_MODE** define the type of deploy of Electron. This can be **build** or **start**
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+When **ELECTRON_MODE** is **start**, the app will start locally running Next JS on **dev mode** and Electron loading **Next Local Url** (ex. localhost:3000)
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+When **ELECTRON_MODE** is **build**, the app will start building the entire Electron and Next apps. For this mode, the app will run with Electron using Express to serve the exported Static Next App.
 
-## Learn More
 
-To learn more about Next.js, take a look at the following resources:
+### Install dependency
+For dependencies just run
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+```bash
+yarn 
+```
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+### Run App locally
+For run this app locally, we have some custom scripts, so just run
 
-## Deploy on Vercel
+```bash
+yarn dev
+```
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+## Creating a Local DEV installer
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+To create a locally dev installer, run 
+
+```bash
+yarn build
+```
+
+This will create a dev installer on the *release* folder called *dME Browser - dev-1.1.10.exe* for example
+
+
+## Creating a QA installer
+
+<img src="https://res.cloudinary.com/dsjhf7sm3/image/upload/v1731933118/dME/dme-logo-qa.png" alt="Alt text" width="100">
+
+To create a installer for QA, we already have a Github Actions to build, deploy and distribute the app.
+
+Upload the code to **qa** branch. This trigger the GH Actions
+
+When build and deploy is ready, a **push notification** will be send to **Product/DevOps** Teams Channel and the app will be automatically update to the last RELEASE QA version 
+
+> **QA Latest Version:** https://github.com/dmenetwork/dme-browser-front/releases/latest
+
+## Creating a PRODUCTION installer
+
+<img src="https://res.cloudinary.com/dsjhf7sm3/image/upload/v1731933199/dME/dme-logo-app.png" alt="Alt text" width="100">
+
+To create a installer for PRODUCTION, we already have a Github Actions to build, deploy and distribute the app, but you need to do an aditional step.
+
+Upload the code to **master** branch. This trigger the GH Actions
+
+When build and deploy is ready, a **push notification** will be send to **Product/DevOps** Teams Channel.
+
+For this time, the app will be "sent" to another repository
+
+> https://github.com/dmenetwork/dme-browser-front-client
+
+**This Repo is ONLY FOR PRODUCCTION DEPLOY AND DISTRIBUTE!**
+
+In this repo, the current version will be define as **"PRE RELEASE"** version. 
+
+**ONLY WHEN THE APP CHANGE TO "RELESASE" WILL BE DISTRIBUTE FOR END USERS
